@@ -97,29 +97,30 @@ def run(argv=None):
     (word, ones) = word_ones
     return (word, sum(ones))
 
-    # Format the counts into a PCollection of strings.
+  # Format the counts into a PCollection of strings.
   def format_result(word_count):
-      (word, count) = word_count
-      return '%s: %d' % (word, count)
+    (word, count) = word_count
+    return '%s: %d' % (word, count)
 
-  counts = (lines
-            | 'split' >> (beam.ParDo(WordExtractingDoFn())
-                          .with_output_types(unicode))
-            | 'pair_with_one' >> beam.Map(lambda x: (x, 1))
-            | 'group' >> beam.GroupByKey()
-            | 'count' >> beam.Map(count_ones)
-            | 'filter' >> beam.Filter(lambda x: x[1] < 5)
-            | 'format' >> beam.Map(format_result)
-            | 'sample' >> Sample.FixedSizeGlobally(10))
+  # FILL IN CODE HERE
+  output = lines |
+  # First, extract the words from the lines of text
+  # Next, pair each word with a value of 1
+  # Next, group each occurrence of the same word
+  # Next, count the occurrences of the word
+  # Next, only keep words that occur less than 5 times
+  # Next, format the results
+  # Lastly, create a subset consisting of 10 word count pairs
+
 
 
   # Write the output using a "Write" transform that has side effects.
-  # pylint: disable=expression-not-assigned
-  counts | 'write' >> WriteToText(known_args.output)
+  output | 'write' >> WriteToText(known_args.output)
 
   result = p.run()
   result.wait_until_finish()
 
+  # deleted stuff here
 
 if __name__ == '__main__':
   logging.getLogger().setLevel(logging.INFO)
