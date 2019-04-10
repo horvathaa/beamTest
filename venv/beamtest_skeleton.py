@@ -33,9 +33,6 @@ from apache_beam.metrics.metric import MetricsFilter
 from apache_beam.options.pipeline_options import PipelineOptions
 from apache_beam.options.pipeline_options import SetupOptions
 
-from apache_beam import Filter
-
-from apache_beam.transforms.combiners import Sample
 
 
 class WordExtractingDoFn(beam.DoFn):
