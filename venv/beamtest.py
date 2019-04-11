@@ -33,7 +33,7 @@ from apache_beam.metrics.metric import MetricsFilter
 from apache_beam.options.pipeline_options import PipelineOptions
 from apache_beam.options.pipeline_options import SetupOptions
 
-from apache_beam import Filter
+from apache_beam import Filter, Map
 
 from apache_beam.transforms.combiners import Sample
 
@@ -111,7 +111,6 @@ def run(argv=None):
             | 'filter' >> beam.Filter(lambda x: x[1] < 5)
             | 'format' >> beam.Map(format_result)
             | 'sample' >> Sample.FixedSizeGlobally(10))
-
 
   # Write the output using a "Write" transform that has side effects.
   # pylint: disable=expression-not-assigned

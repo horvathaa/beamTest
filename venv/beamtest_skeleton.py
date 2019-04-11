@@ -100,6 +100,7 @@ def run(argv=None):
     return '%s: %d' % (word, count)
 
   # FILL IN CODE HERE
+  # to test your implementation run this: python beamtest_skeleton_p[your number here].py --input mobyDick.txt --output counts
   output = lines |
   # First, extract the words from the lines of text
   # Next, pair each word with a value of 1
