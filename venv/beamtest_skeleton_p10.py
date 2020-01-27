@@ -33,6 +33,8 @@ from apache_beam.metrics.metric import MetricsFilter
 from apache_beam.options.pipeline_options import PipelineOptions
 from apache_beam.options.pipeline_options import SetupOptions
 
+
+
 class WordExtractingDoFn(beam.DoFn):
   """Parse each line of input text into words."""
 
@@ -92,12 +94,14 @@ def run(argv=None):
     (word, ones) = word_ones
     return (word, sum(ones))
 
-    # Format the counts into a PCollection of strings.
+  # Format the counts into a PCollection of strings.
   def format_result(word_count):
-      (word, count) = word_count
-      return '%s: %d' % (word, count)
+    (word, count) = word_count
+    return '%s: %d' % (word, count)
 
-  output =
+  # FILL IN CODE HERE
+  # to test your implementation run this: python beamtest_skeleton_p9.py --input mobyDick.txt --output counts
+  output = lines |
   # First, extract the words from the lines of text
   # Next, pair each word with a value of 1
   # Next, group each occurrence of the same word
@@ -106,13 +110,15 @@ def run(argv=None):
   # Next, format the results
   # Lastly, create a subset consisting of 10 word count pairs
 
+
+
   # Write the output using a "Write" transform that has side effects.
-  # pylint: disable=expression-not-assigned
   output | 'write' >> WriteToText(known_args.output)
 
   result = p.run()
   result.wait_until_finish()
 
+  # deleted stuff here
 
 if __name__ == '__main__':
   logging.getLogger().setLevel(logging.INFO)
